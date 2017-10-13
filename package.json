@@ -1,0 +1,28 @@
+{
+  "name": "json-editor",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^6.4.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-env": "^1.6.0",
+    "copyfiles": "^1.2.0"
+  },
+  "scripts": {
+    "build": "yarn run copy && webpack",
+    "copy": "copyfiles -f ./index.html ./dist",
+    "build:watch": "yarn run copy && webpack --progress --colors --watch"
+  },
+  "dependencies": {
+    "prop-types": "latest",
+    "react": "^15.6.2",
+    "react-dom": "^15.6.2",
+    "react-treebeard": "^2.0.3",
+    "webpack": "^1.15.0",
+    "whatwg-fetch": "^1.1.1"
+  }
+}
