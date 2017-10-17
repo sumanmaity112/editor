@@ -8,12 +8,12 @@ module.exports = {
         filename: 'bundle.js'
     },
     plugins: [
-        new webpack.optimize.UglifyJsPlugin({
-            screw_ie8: true,
-            compressor: {
-                warnings: false,
-            },
-        })
+        // new webpack.optimize.UglifyJsPlugin({
+        //     screw_ie8: true,
+        //     compressor: {
+        //         warnings: false,
+        //     },
+        // })
     ],
 
     module: {

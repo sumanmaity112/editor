@@ -1,7 +1,8 @@
 import React from 'react'
 import {Treebeard} from "react-treebeard";
-import NodeViewer from './NodeViewer'
+import Editor from './Editor'
 import defaultTreeStyle from '../themes/default'
+import {getContentOf} from "../services/configService";
 
 class Tree extends React.Component {
     constructor(props) {
@@ -11,6 +12,12 @@ class Tree extends React.Component {
     }
 
     onToggle(node, toggled) {
+        let self = this;
+        if (node && node.type === 'file') {
+            getContentOf(node.path).then((content) => {
+                self.setState({cursor: node, content});
+            });
+        }
         if (this.state.cursor) {
             this.state.cursor.active = false;
         }
@@ -24,8 +31,8 @@ class Tree extends React.Component {
     render() {
         return (
             <div>
-                <Treebeard data={this.props.data} onToggle={this.onToggle} style={defaultTreeStyle} />
-                <NodeViewer node={this.state.cursor}/>
+                <Treebeard data={this.props.data} onToggle={this.onToggle} style={defaultTreeStyle}/>
+                <Editor value={this.state.content}/>
             </div>
 
         );
