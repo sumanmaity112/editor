@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import AceEditor from 'react-ace';
 
-require('brace/theme/monokai');
+require('brace/theme/github');
 require('brace/mode/json');
 require('brace/ext/language_tools');
 
@@ -59,7 +59,7 @@ export default class Editor extends AceEditor {
         super(props);
         this.state = {
             value: props.value,
-            theme: 'monokai',
+            theme: 'github',
             mode: 'json',
             enableBasicAutocompletion: false,
             enableLiveAutocompletion: false,
