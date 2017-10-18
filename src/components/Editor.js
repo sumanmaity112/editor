@@ -7,20 +7,14 @@ require('brace/theme/github');
 require('brace/mode/json');
 require('brace/ext/language_tools');
 
-let styles = {
-    whiteSpace: 'pre-wrap',
-    padding: '20px'
-};
-
 export default class Editor extends AceEditor {
     onLoad() {
 
     }
 
     onChange(newValue) {
-        this.setState({
-            value: newValue
-        })
+        const value = newValue && newValue.lines ? newValue.lines.join('\n') : newValue;
+        this.setState({ value })
     }
 
     onSelectionChange(newValue, event) {
@@ -77,6 +71,12 @@ export default class Editor extends AceEditor {
         this.setBoolean = this.setBoolean.bind(this);
     }
 
+    componentWillRecieveProps(nextProps) {
+        if (this.props.value !== nextProps.value){
+            this.setState({ value: nextProps.value });
+        }
+    }
+
     render() {
         return <AceEditor
             mode={this.state.mode}
@@ -86,7 +86,7 @@ export default class Editor extends AceEditor {
             onChange={this.onChange}
             onSelectionChange={this.onSelectionChange}
             onValidate={this.onValidate}
-            value={this.props.value}
+            value={this.state.value}
             fontSize={this.state.fontSize}
             showPrintMargin={this.state.showPrintMargin}
             showGutter={this.state.showGutter}
