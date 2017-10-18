@@ -20,13 +20,13 @@ export default {
             method: 'POST',
             credentials: 'same-origin',
             headers: {
-                Accept: 'application/json'
+                "Content-Type": 'application/json'
             },
             body: JSON.stringify(jsonBody),
         })
             .then((response) => {
                 if (response.status >= 200 && response.status < 300) {
-                    return response.json();
+                    return response.text();
                 }
                 const error = new Error(response.statusText);
                 error.response = response;

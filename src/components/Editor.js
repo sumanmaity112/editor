@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types';
 
 import AceEditor from 'react-ace';
+import {saveContent} from "../services/configService";
 
 require('brace/theme/github');
 require('brace/mode/json');
@@ -14,7 +15,7 @@ export default class Editor extends AceEditor {
 
     onChange(newValue) {
         const value = newValue && newValue.lines ? newValue.lines.join('\n') : newValue;
-        this.setState({ value })
+        this.setState({value})
     }
 
     onSelectionChange(newValue, event) {
@@ -48,6 +49,9 @@ export default class Editor extends AceEditor {
             fontSize: parseInt(e.target.value, 10)
         })
     }
+    _save() {
+        saveContent(this.props.node.path, this.state.value);
+    };
 
     constructor(props) {
         super(props);
@@ -69,38 +73,43 @@ export default class Editor extends AceEditor {
         this.onChange = this.onChange.bind(this);
         this.setFontSize = this.setFontSize.bind(this);
         this.setBoolean = this.setBoolean.bind(this);
+        this._save = this._save.bind(this);
     }
 
-    componentWillRecieveProps(nextProps) {
-        if (this.props.value !== nextProps.value){
-            this.setState({ value: nextProps.value });
+    componentWillReceieveProps(nextProps) {
+        if (this.props.value !== nextProps.value) {
+            this.setState({value: nextProps.value});
         }
     }
 
     render() {
-        return <AceEditor
-            mode={this.state.mode}
-            theme={this.state.theme}
-            name="editor"
-            onLoad={this.onLoad}
-            onChange={this.onChange}
-            onSelectionChange={this.onSelectionChange}
-            onValidate={this.onValidate}
-            value={this.state.value}
-            fontSize={this.state.fontSize}
-            showPrintMargin={this.state.showPrintMargin}
-            showGutter={this.state.showGutter}
-            highlightActiveLine={this.state.highlightActiveLine}
-            setOptions={{
-                enableBasicAutocompletion: this.state.enableBasicAutocompletion,
-                enableLiveAutocompletion: this.state.enableLiveAutocompletion,
-                enableSnippets: this.state.enableSnippets,
-                showLineNumbers: this.state.showLineNumbers,
-                tabSize: 2,
-            }}/>
+        return <div>
+            <AceEditor
+                mode={this.state.mode}
+                theme={this.state.theme}
+                name="editor"
+                onLoad={this.onLoad}
+                onChange={this.onChange}
+                onSelectionChange={this.onSelectionChange}
+                onValidate={this.onValidate}
+                value={this.state.value}
+                fontSize={this.state.fontSize}
+                showPrintMargin={this.state.showPrintMargin}
+                showGutter={this.state.showGutter}
+                highlightActiveLine={this.state.highlightActiveLine}
+                setOptions={{
+                    enableBasicAutocompletion: this.state.enableBasicAutocompletion,
+                    enableLiveAutocompletion: this.state.enableLiveAutocompletion,
+                    enableSnippets: this.state.enableSnippets,
+                    showLineNumbers: this.state.showLineNumbers,
+                    tabSize: 2,
+                }}/>
+            <input type='button' value='save' onClick={this._save}/>
+        </div>
     }
 }
 
 Editor.propTypes = {
-    value: PropTypes.string
+    value: PropTypes.string,
+    node: PropTypes.object
 };

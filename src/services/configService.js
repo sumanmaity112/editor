@@ -8,3 +8,7 @@ export const getTree = () => {
 export const getContentOf = (filename) => {
     return httpInterceptor.get(`${constants.configContentUrl}?filename=${filename}`);
 };
+
+export const saveContent = (filename, content) => {
+    return httpInterceptor.post(`${constants.configContentSaveUrl}`, {filename, content});
+};
