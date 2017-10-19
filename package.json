@@ -19,7 +19,10 @@
     "build:watch": "yarn run copy && webpack --progress --colors --watch"
   },
   "dependencies": {
+    "bootstrap": "^3.3.7",
     "brace": "^0.10.0",
+    "jquery": "^3.2.1",
+    "popper.js": "^1.12.5",
     "prop-types": "latest",
     "react": "^15.6.2",
     "react-ace": "^5.4.0",

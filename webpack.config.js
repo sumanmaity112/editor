@@ -41,12 +41,18 @@ module.exports = {
                 },
             ], {copyUnmodified: true}
         ),
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery',
+            'window.jQuery': 'jquery',
+            Popper: ['popper.js', 'default'],
+        }),
         new webpack.optimize.UglifyJsPlugin({
             screw_ie8: true,
             compressor: {
                 warnings: false,
             },
-        })
+        }),
     ],
 
     module: {

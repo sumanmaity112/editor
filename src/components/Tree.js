@@ -30,9 +30,13 @@ class Tree extends React.Component {
 
     render() {
         return (
-            <div>
-                <Treebeard data={this.props.data} onToggle={this.onToggle} style={defaultTreeStyle}/>
-                <Editor value={this.state.content} node={this.state.cursor}/>
+            <div className='editor-container'>
+                <div className='col-md-4'>
+                    <Treebeard data={this.props.data} onToggle={this.onToggle} style={defaultTreeStyle}/>
+                </div>
+                <div className='col-md-8'>
+                    <Editor value={this.state.content} node={this.state.cursor}/>
+                </div>
             </div>
 
         );

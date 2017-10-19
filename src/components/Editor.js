@@ -97,6 +97,9 @@ export default class Editor extends AceEditor {
                 mode={this.state.mode}
                 theme={this.state.theme}
                 name="editor"
+                width='90%'
+                height={`${window.screen.height * .8}px`}
+                className="edit-area"
                 onLoad={this.onLoad}
                 onChange={this.onChange}
                 onSelectionChange={this.onSelectionChange}
