@@ -3,16 +3,21 @@ import PropTypes from 'prop-types';
 
 import AceEditor from 'react-ace';
 import {saveContent} from "../services/configService";
-import {getModeByExt, getSupportedModes, getSupportedThemes} from "../services/configEditorHelperService";
+import {getModeByExt} from "../services/configEditorHelperService";
 
 require('brace/ext/language_tools');
 
-getSupportedThemes().forEach((theme) => {
-    require(`brace/theme/${theme}`)
-});
-getSupportedModes().forEach((mode) => {
-    require(`brace/mode/${mode}`)
-});
+//Available themes. To add new theme require it below
+require('brace/theme/monokai');
+require('brace/theme/github');
+
+//Available modes. To add new mode require it below
+require('brace/mode/javascript');
+require('brace/mode/json');
+require('brace/mode/sh');
+require('brace/mode/plain_text');
+require('brace/mode/sql');
+
 
 export default class Editor extends AceEditor {
     onLoad() {

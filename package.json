@@ -10,7 +10,6 @@
     "babel-loader": "^6.4.1",
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
-    "copy-webpack-plugin": "^4.1.1",
     "copyfiles": "^1.2.0"
   },
   "scripts": {
@@ -21,8 +20,6 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "brace": "^0.10.0",
-    "jquery": "^3.2.1",
-    "popper.js": "^1.12.5",
     "prop-types": "latest",
     "react": "^15.6.2",
     "react-ace": "^5.4.0",
