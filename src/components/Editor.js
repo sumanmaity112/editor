@@ -3,10 +3,16 @@ import PropTypes from 'prop-types';
 
 import AceEditor from 'react-ace';
 import {saveContent} from "../services/configService";
+import {getModeByExt, getSupportedModes, getSupportedThemes} from "../services/configEditorHelperService";
 
-require('brace/theme/github');
-require('brace/mode/json');
 require('brace/ext/language_tools');
+
+getSupportedThemes().forEach((theme) => {
+    require(`brace/theme/${theme}`)
+});
+getSupportedModes().forEach((mode) => {
+    require(`brace/mode/${mode}`)
+});
 
 export default class Editor extends AceEditor {
     onLoad() {
@@ -32,10 +38,8 @@ export default class Editor extends AceEditor {
         })
     }
 
-    setMode(e) {
-        this.setState({
-            mode: e.target.value
-        })
+    setMode(mode) {
+        this.setState({mode});
     }
 
     setBoolean(name, value) {
@@ -49,6 +53,7 @@ export default class Editor extends AceEditor {
             fontSize: parseInt(e.target.value, 10)
         })
     }
+
     _save() {
         saveContent(this.props.node.path, this.state.value);
     };
@@ -76,9 +81,13 @@ export default class Editor extends AceEditor {
         this._save = this._save.bind(this);
     }
 
-    componentWillReceieveProps(nextProps) {
+    componentWillReceiveProps(nextProps) {
         if (this.props.value !== nextProps.value) {
             this.setState({value: nextProps.value});
+        }
+        const {node} = nextProps;
+        if (node && node.type === 'file') {
+            this.setMode(getModeByExt(node.extension));
         }
     }
 
