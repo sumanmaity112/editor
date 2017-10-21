@@ -17,4 +17,4 @@ export const getSupportedModes = () => {
 
 export const getModeByExt = (ext) => {
     return EXT_TO_MODE_MAP[ext] || "plain_text";
-}
+};

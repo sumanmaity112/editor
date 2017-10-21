@@ -28,6 +28,7 @@
   "dependencies": {
     "bootstrap": "4.0.0-alpha.6",
     "brace": "^0.10.0",
+    "lodash": "^4.17.4",
     "prop-types": "latest",
     "react": "^15.6.2",
     "react-ace": "^5.4.0",

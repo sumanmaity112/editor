@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 
 import AceEditor from 'react-ace';
 import {saveContent} from "../services/configService";
-import {getModeByExt} from "../services/configEditorHelperService";
+import {getContentOf} from "../services/configService";
+import {getModeByExt, getSupportedThemes} from "../services/configEditorHelperService";
+import {map} from 'lodash';
 
 require('brace/ext/language_tools');
 
@@ -63,11 +65,28 @@ export default class Editor extends AceEditor {
         saveContent(this.props.node.path, this.state.value);
     };
 
+    _createOptionList(options) {
+        return map(options, (option, index) => {
+            return <option value={option.toString()} key={index.toString()}> {option}</option>
+        });
+    };
+
+    _discard() {
+        let self = this;
+        const {node} = this.props;
+        if (node && node.type === 'file') {
+            getContentOf(node.path).then((content) => {
+                self.setState({value: content});
+            });
+        }
+    }
+
     constructor(props) {
         super(props);
+        this.themes = getSupportedThemes();
         this.state = {
             value: props.value,
-            theme: 'github',
+            theme: this.themes[0],
             mode: 'json',
             enableBasicAutocompletion: false,
             enableLiveAutocompletion: false,
@@ -84,6 +103,7 @@ export default class Editor extends AceEditor {
         this.setFontSize = this.setFontSize.bind(this);
         this.setBoolean = this.setBoolean.bind(this);
         this._save = this._save.bind(this);
+        this._discard = this._discard.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -96,14 +116,28 @@ export default class Editor extends AceEditor {
         }
     }
 
+
     render() {
         return <div>
+            <div className='row editor-actions-container'>
+                <div className='col-md-4 float-left'>
+                    <label htmlFor="theme-list"> Theme &nbsp;&nbsp; </label>
+                    <select id='theme-list' onChange={this.setTheme}>
+                        {this._createOptionList(this.themes)}
+                    </select>
+                </div>
+                <div className='col-md-4 float-right'>
+                    <label htmlFor="font-size"> Font Size &nbsp;&nbsp;</label>
+                    <input type="number" onChange={this.setFontSize} id='font-size' defaultValue='14' min='10'/>
+                </div>
+            </div>
+
             <AceEditor
                 mode={this.state.mode}
                 theme={this.state.theme}
                 name="editor"
-                width='90%'
-                height={`${window.screen.height * .8}px`}
+                width='100%'
+                height={`${window.screen.height * .7}px`}
                 className="edit-area"
                 onLoad={this.onLoad}
                 onChange={this.onChange}
@@ -121,7 +155,10 @@ export default class Editor extends AceEditor {
                     showLineNumbers: this.state.showLineNumbers,
                     tabSize: 2,
                 }}/>
-            <input type='button' value='save' onClick={this._save}/>
+            <div className='editor-actions-container'>
+                <button type="button" className="col-md-4 float-left btn btn-danger" onClick={this._discard}>Discard</button>
+                <button type="button" className="col-md-4 float-right btn btn-success" onClick={this._save}>Save</button>
+            </div>
         </div>
     }
 }

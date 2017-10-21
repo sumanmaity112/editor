@@ -1,6 +1,11 @@
-@import "../node_modules/bootstrap/scss/bootstrap-grid";
+@import "../node_modules/bootstrap/scss/bootstrap";
 
 .container {
   margin-top: 1rem;
   width: 95%;
+}
+
+.editor-actions-container{
+  margin-top: .3rem;
+  margin-bottom: 0.3rem;
 }
