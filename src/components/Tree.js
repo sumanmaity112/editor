@@ -32,15 +32,14 @@ class Tree extends React.Component {
         return (
             <div className='container'>
                 <div className='row'>
-                    <div className='col-md-4'>
+                    <div className='col-md-3'>
                         <Treebeard data={this.props.data} onToggle={this.onToggle} style={defaultTreeStyle}/>
                     </div>
-                    <div className='col-md-8'>
+                    <div className='col-md-9'>
                         <Editor value={this.state.content} node={this.state.cursor}/>
                     </div>
                 </div>
             </div>
-
         );
     }
 }

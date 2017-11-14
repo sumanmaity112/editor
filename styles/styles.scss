@@ -9,3 +9,12 @@
   margin-top: .3rem;
   margin-bottom: 0.3rem;
 }
+
+#editor {
+  border: 0.2rem solid black;
+}
+
+.editor-actions-container > button {
+  width: auto;
+  background: #ff0b3a !important;
+}

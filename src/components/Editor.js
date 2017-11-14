@@ -120,15 +120,21 @@ export default class Editor extends AceEditor {
     render() {
         return <div>
             <div className='row editor-actions-container'>
-                <div className='col-md-4 float-left'>
+                <div className='col-md-3'>
                     <label htmlFor="theme-list"> Theme &nbsp;&nbsp; </label>
                     <select id='theme-list' onChange={this.setTheme}>
                         {this._createOptionList(this.themes)}
                     </select>
                 </div>
-                <div className='col-md-4 float-right'>
+                <div className='col-md-5'>
                     <label htmlFor="font-size"> Font Size &nbsp;&nbsp;</label>
                     <input type="number" onChange={this.setFontSize} id='font-size' defaultValue='14' min='10'/>
+                </div>
+                <div className='col-md-2'>
+                    <button type="button" className="btn btn-danger float-right" onClick={this._discard}>Discard</button>
+                </div>
+                <div className='col-md-2'>
+                    <button type="button" className="btn btn-success float-right" onClick={this._save}>Save</button>
                 </div>
             </div>
 
@@ -155,10 +161,6 @@ export default class Editor extends AceEditor {
                     showLineNumbers: this.state.showLineNumbers,
                     tabSize: 2,
                 }}/>
-            <div className='editor-actions-container'>
-                <button type="button" className="col-md-4 float-left btn btn-danger" onClick={this._discard}>Discard</button>
-                <button type="button" className="col-md-4 float-right btn btn-success" onClick={this._save}>Save</button>
-            </div>
         </div>
     }
 }
