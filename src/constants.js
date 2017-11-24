@@ -1,4 +1,4 @@
-const baseConfigUrl = "/openmrs/ws/rest/v1/bahmnicore/config-editor";
+const baseConfigUrl = "/openmrs/ws/rest/v1/bahmni-config-editor";
 export default {
     baseConfigUrl: baseConfigUrl,
     configContentUrl: baseConfigUrl + "/content",
