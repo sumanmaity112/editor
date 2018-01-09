@@ -1,5 +1,6 @@
 @import "../node_modules/bootstrap/scss/bootstrap";
 @import "bahmniGlobal";
+@import "font-awesome";
 
 .container {
   margin-top: 4rem;
@@ -18,8 +19,4 @@
 .editor-actions-container > button {
   width: auto;
   background: #ff0b3a !important;
-}
-
-.fa-home:before {
-  content: "\f015";
 }

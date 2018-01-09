@@ -5,7 +5,13 @@ const Header = () =>
     <div className="header-wrap">
       <header className="header">
         <nav className="nav">
-
+          <ul>
+            <li>
+              <a className="back-btn" href="/home">
+                <i className="fa fa-home"/>
+              </a>
+            </li>
+          </ul>
         </nav>
       </header>
     </div>
