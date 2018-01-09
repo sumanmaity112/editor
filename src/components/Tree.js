@@ -3,6 +3,7 @@ import {Treebeard} from "react-treebeard";
 import Editor from './Editor'
 import defaultTreeStyle from '../themes/default'
 import {getContentOf} from "../services/configService";
+import ConfigEditorHeader from "./ConfigEditorHeader.jsx"
 
 class Tree extends React.Component {
     constructor(props) {
@@ -30,13 +31,16 @@ class Tree extends React.Component {
 
     render() {
         return (
-            <div className='container'>
-                <div className='row'>
-                    <div className='col-md-3'>
-                        <Treebeard data={this.props.data} onToggle={this.onToggle} style={defaultTreeStyle}/>
-                    </div>
-                    <div className='col-md-9'>
-                        <Editor value={this.state.content} node={this.state.cursor}/>
+            <div>
+                <ConfigEditorHeader/>
+                <div className='container'>
+                    <div className='row'>
+                        <div className='col-md-3'>
+                            <Treebeard data={this.props.data} onToggle={this.onToggle} style={defaultTreeStyle}/>
+                        </div>
+                        <div className='col-md-9'>
+                            <Editor value={this.state.content} node={this.state.cursor}/>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,0 +1,58 @@
+//TOP FIXED HEADER
+@import "variables";
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+.header-wrap {
+  background: $bahmniSecondaryColor;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9;
+  padding: 0 10px;
+  height: 52px;
+}
+
+.header, .breadcrumb-inner, .container-content {
+  max-width: $max-page-width;
+  margin: 0 auto;
+}
+
+h2.header-title {
+  background: $bahmniSecondaryColor;
+  color: $gray200;
+  font-size: 16px;
+  padding: 10px;
+  margin: 0;
+  border-radius: 3px 3px 0 0;
+}
+
+.nav {
+  float: left;
+  width: auto;
+  ul {
+    li {
+      padding: 0 20px 0 0;
+      display: inline-block;
+      a {
+        color: $white;
+        font-weight: 400;
+      }
+      &:hover {
+        opacity: 0.75;
+      }
+      &.active {
+        opacity: 0.75;
+        font-family: $primaryBoldFont san-serif;
+      }
+    }
+  }
+}
