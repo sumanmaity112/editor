@@ -59,7 +59,7 @@ module.exports = {
             },
             {
                 test: /\.(jpe?g|png|gif|svg)$/i,
-                loader: 'file-loader?name=/styles/images/[name].[ext]',
+                loader: 'file-loader?name=/config-editor/styles/images/[name].[ext]',
             },
         ]
     }

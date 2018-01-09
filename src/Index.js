@@ -1,8 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Tree from './components/Tree'
-import {getTree} from "./services/configService";
+import {render} from 'react-dom';
+import Dashboard from './components/Dashboard';
 
-getTree().then((data) => {
-    ReactDOM.render(<Tree data={JSON.parse(data)}/>, document.getElementById('folder-structure'));
-});
+render(<Dashboard/>, document.getElementById('folder-structure'));
