@@ -10,7 +10,8 @@ module.exports = {
         './styles/styles.scss'],
     output: {
         path: path.join(__dirname, 'dist'),
-        filename: 'bundle.js'
+        filename: 'bundle.js',
+        publicPath: ""
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
@@ -59,7 +60,7 @@ module.exports = {
             },
             {
                 test: /\.(jpe?g|png|gif|svg)$/i,
-                loader: 'file-loader?name=/config-editor/styles/images/[name].[ext]',
+                loader: 'file-loader?name=./images/[name].[ext]',
             },
         ]
     }
